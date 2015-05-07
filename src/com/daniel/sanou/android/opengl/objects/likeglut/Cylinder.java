@@ -9,6 +9,8 @@ public class Cylinder extends ObjectLikeGLUT {
     int slices;
     //rayon
     double radius;
+    //rayon de la base du cylindre, si =0 on obtient un cone !!
+    private double base;
     private static final double TWOPI = 2 * Math.PI;
 
     public Cylinder(){
@@ -16,14 +18,16 @@ public class Cylinder extends ObjectLikeGLUT {
         height = 2;
         slices = 5;
         radius = 1;
+        base = 1;
         initBuffAndPutV();
     }
 
-    public Cylinder(double radius, double height, int slices){
+    public Cylinder(double base, double radius, double height, int slices){
         super();
         this.radius = radius > 0.0 ? radius : 0.1;
         this.height = height > 0.0 ? height : 0.1;
         this.slices = slices > 2 ? slices : 3;
+        this.base = base >= 0.0 ? base : 0.0;
         initBuffAndPutV();
     }
 
@@ -41,9 +45,9 @@ public class Cylinder extends ObjectLikeGLUT {
 
             for (int j = 0; j < 2; j++)
             {
-                verticesAux[0] = (float) (radius * Math.cos(Theta));
+                verticesAux[0] = (float) (base * radius * Math.cos(Theta));
                 verticesAux[1] = (float) (0);
-                verticesAux[2] = (float) (radius * Math.sin(Theta));
+                verticesAux[2] = (float) (base * radius * Math.sin(Theta));
                 vertexBuffer.put(verticesAux);
 
                 verticesAux[0] = (float) (radius * Math.cos(Theta));
@@ -80,6 +84,15 @@ public class Cylinder extends ObjectLikeGLUT {
 
     public void setSlices(int slices) {
         this.slices = slices > 2 ? slices : 3;
+        initBuffAndPutV();
+    }
+
+    public double getBase() {
+        return base;
+    }
+
+    public void setBase(double base) {
+        this.base = base >= 0.0 ? base : 0.0;
         initBuffAndPutV();
     }
 }
