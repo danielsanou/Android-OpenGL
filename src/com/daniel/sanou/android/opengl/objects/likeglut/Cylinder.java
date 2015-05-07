@@ -2,16 +2,16 @@ package com.daniel.sanou.android.opengl.objects.likeglut;
 
 public class Cylinder extends ObjectLikeGLUT {
 
-    private float[] verticesAux = new float[3];
-    //hauteur
-    private double height;
+    private static final double TWOPI = 2 * Math.PI;
     //nombre de slices de l'anneau
     int slices;
     //rayon
     double radius;
-    //rayon de la base du cylindre, si =0 on obtient un cone !!
+    private float[] verticesAux = new float[3];
+    //hauteur
+    private double height;
+    //rayon de la base du cylindre, si =0 on obtient un cone, si =1 on obtient un cylindre!!
     private double base;
-    private static final double TWOPI = 2 * Math.PI;
 
     public Cylinder(){
         super();

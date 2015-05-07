@@ -9,14 +9,13 @@ import java.nio.FloatBuffer;
 
 public class RosesHead implements GLObject {
 
+    float R = 1.5f;
+    float r = 0.6f;
+    int maxn = 9; // max precision
     //private static final String TAG = Torus.class.getSimpleName();
     //Log.d(TAG, "------------Begin of draw---------------------");
     private FloatBuffer torusVerticesBuffer;
     private float[][] torusVertices = new float[32][3];
-
-    float R = 1.5f;
-    float r = 0.6f;
-    int maxn = 8; // max precision
 
     public RosesHead(){
         super();

@@ -4,6 +4,7 @@ import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 import com.daniel.sanou.android.opengl.objects.common.GLObject;
 import com.daniel.sanou.android.opengl.objects.likeglut.*;
+import com.daniel.sanou.android.opengl.objects.others.Roses;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -13,20 +14,19 @@ import java.nio.FloatBuffer;
 
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
 
+    // Ambient light
+    private final float[] mat_ambient = { 0.2f, 0.3f, 0.4f, 1.0f };
+    // Parallel incident light
+    private final float[] mat_diffuse = { 0.4f, 0.6f, 0.8f, 1.0f };
+    // The highlighted area
+    private final float[] mat_specular = { 0.2f * 0.4f, 0.2f * 0.6f, 0.2f * 0.8f, 1.0f };
     private float objectRotation = 0.0f;
     private float objRotationXAxis = 1.0f, objRotationYAxis = 1.0f, objRotationZAxis = 1.0f;
     private float objTranslationXAxis = 0.0f, objTranslationYAxis = 0.0f,objTranslationZAxis = -10.0f;
     private GLObject[] mObjects;
     private int indice;
-
-    // Ambient light
-    private final float[] mat_ambient = { 0.2f, 0.3f, 0.4f, 1.0f };
     private FloatBuffer mat_ambient_buf;
-    // Parallel incident light
-    private final float[] mat_diffuse = { 0.4f, 0.6f, 0.8f, 1.0f };
     private FloatBuffer mat_diffuse_buf;
-    // The highlighted area
-    private final float[] mat_specular = { 0.2f * 0.4f, 0.2f * 0.6f, 0.2f * 0.8f, 1.0f };
     private FloatBuffer mat_specular_buf;
 
     private float mLightX = 10f, mLightY = 10f, mLightZ = 10f;
@@ -79,7 +79,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         gl.glTranslatef(objTranslationXAxis, objTranslationYAxis, objTranslationZAxis);
         gl.glRotatef(objectRotation, objRotationXAxis, objRotationYAxis, objRotationZAxis);
         //Objects color
-        gl.glColor4f(1,0,0,1);
+        gl.glColor4f(1, 0, 0, 1);
         mObjects[indice].draw(gl);
         objectRotation -= 0.65f;
         /*================================== Objects draw logic ========================================*/
@@ -115,7 +115,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     }
 
     private void initObjectsList() {
-        this.mObjects = new ObjectLikeGLUT[]{
+        this.mObjects = new GLObject[]{
                 new Disk(),
                 new Cone(),
                 new Cylinder(),
@@ -125,7 +125,8 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
                 new Dodecahedron(),
                 new Icosahedron(),
                 new Sphere(),
-                new Torus()
+                new Torus(),
+                new Roses()
         };
     }
 
@@ -170,6 +171,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     }
 
     public void incrIndice(){
-       indice = (indice+1) % 10;
+       indice = (indice+1) % 11;
     }
 }
