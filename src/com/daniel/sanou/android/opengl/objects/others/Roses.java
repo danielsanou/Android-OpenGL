@@ -9,8 +9,18 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class Roses extends RosesHead{
 
+    Cone coneBf, epine1, epine2, epine3, epine4;
+    Octahedron obf1, obf2, obf3, obf4, feuille;
+    Dodecahedron dodeBf;
+    Cylinder tige;
     public Roses(){
         super();
+        coneBf = new Cone(0.6,1.5,10);
+        obf1 = obf2 = obf3 = obf4 = new Octahedron(0.9f);
+        dodeBf = new Dodecahedron(0.5f);
+        tige = new Cylinder(0.6,0.3,4,8);
+        feuille = new Octahedron(0.7f);
+        epine1 = epine2 = epine3 = epine4 = new Cone(0.2,1,8);
     }
 
     public void draw(GL10 gl) {
@@ -24,21 +34,21 @@ public class Roses extends RosesHead{
             gl.glRotatef(180, 1, 0, 0);
             gl.glTranslatef(0, 1.0f, 0);
             gl.glColor4f(0, 1, 0, 1);
-            new Cone(0.6,1.5,10).draw(gl);
+            coneBf.draw(gl);
         gl.glPopMatrix();
 
         gl.glPushMatrix();
             gl.glTranslatef(-0.8f, -0.7f, 0);
             gl.glRotatef(-30, 0, 0, -1);
             gl.glScalef(1, 0.1f, 0.5f);
-            new Octahedron(0.9f).draw(gl);
+            obf1.draw(gl);
         gl.glPopMatrix();
 
         gl.glPushMatrix();
             gl.glTranslatef(0.8f, -0.7f, 0f);
             gl.glRotatef(30, 0, 0, -1);
             gl.glScalef(1, 0.1f, 0.5f);
-            new Octahedron(0.9f).draw(gl);
+            obf2.draw(gl);
         gl.glPopMatrix();
 
         gl.glPushMatrix();
@@ -46,7 +56,7 @@ public class Roses extends RosesHead{
             gl.glRotatef(90, 0, -1, 0);
             gl.glRotatef(-30, 0, 0, 1);
             gl.glScalef(1, 0.1f, 0.5f);
-            new Octahedron(0.9f).draw(gl);
+            obf3.draw(gl);
         gl.glPopMatrix();
 
         gl.glPushMatrix();
@@ -54,48 +64,48 @@ public class Roses extends RosesHead{
             gl.glRotatef(90, 0, -1, 0);
             gl.glRotatef(30, 0, 0, 1);
             gl.glScalef(1, 0.1f, 0.5f);
-            new Octahedron(0.9f).draw(gl);
+            obf4.draw(gl);
         gl.glPopMatrix();
 
         gl.glPushMatrix();
             gl.glTranslatef(0, -0.7f, 0);
-            new Dodecahedron(0.5f).draw(gl);
+            dodeBf.draw(gl);
         gl.glPopMatrix();
         /////////////////////////////////TIGE/////////////////
         gl.glPushMatrix();
             gl.glTranslatef(0, -4.7f, 0);
-            new Cylinder(0.6,0.3,4,8).draw(gl);
+            tige.draw(gl);
         gl.glPopMatrix();
         /////////////////////////////FEUILLE////////////////////
         gl.glPushMatrix();
             gl.glTranslatef(-0.7f, -2.7f, 0);
             gl.glRotatef(30, 0, 0, -1);
             gl.glScalef(1.5f, 0.1f, 1f);
-            new Octahedron(0.7f).draw(gl);
+            feuille.draw(gl);
         gl.glPopMatrix();
 /////////////////////////////////////////////////EPINES///////////////////////////
         gl.glPushMatrix();
             gl.glTranslatef(0, -1.5f, -0.5f);
             gl.glRotatef(68, -1, 0, 0);
-            new Cone(0.2,1,8).draw(gl);
+            epine1.draw(gl);
         gl.glPopMatrix();
 
         gl.glPushMatrix();
             gl.glTranslatef(0, -2.0f, 0.5f);
             gl.glRotatef(-70, -1, 0, 0);
-            new Cone(0.2,1,8).draw(gl);
+            epine2.draw(gl);
         gl.glPopMatrix();
 
         gl.glPushMatrix();
             gl.glTranslatef(0, -2.5f, -0.5f);
             gl.glRotatef(72, -1, 0, 0);
-            new Cone(0.2,1,8).draw(gl);
+            epine3.draw(gl);
         gl.glPopMatrix();
 
         gl.glPushMatrix();
         gl.glTranslatef(0, -3.0f, 0.5f);
             gl.glRotatef(-68, -1, 0, 0);
-            new Cone(0.2,1,8).draw(gl);
+            epine4.draw(gl);
         gl.glPopMatrix();
     }
 }
