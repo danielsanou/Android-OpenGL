@@ -68,7 +68,7 @@ public class Roses extends RosesHead{
         gl.glPopMatrix();
 
         gl.glPushMatrix();
-            gl.glTranslatef(0, -0.7f, 0);
+            gl.glTranslatef(0, -0.5f, 0);
             dodeBf.draw(gl);
         gl.glPopMatrix();
         /////////////////////////////////TIGE/////////////////

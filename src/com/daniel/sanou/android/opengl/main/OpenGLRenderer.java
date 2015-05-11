@@ -4,6 +4,7 @@ import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 import com.daniel.sanou.android.opengl.objects.common.GLObject;
 import com.daniel.sanou.android.opengl.objects.likeglut.*;
+import com.daniel.sanou.android.opengl.objects.others.Atome;
 import com.daniel.sanou.android.opengl.objects.others.Roses;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -126,7 +127,8 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
                 new Icosahedron(),
                 new Sphere(),
                 new Torus(),
-                new Roses()
+                new Roses(),
+                new Atome()
         };
     }
 
@@ -171,6 +173,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     }
 
     public void incrIndice(){
-       indice = (indice+1) % 11;
+       indice = (indice+1) % 12;
     }
 }
