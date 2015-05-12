@@ -1,11 +1,13 @@
 package com.daniel.sanou.android.opengl.main;
 
+import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 import com.daniel.sanou.android.opengl.objects.common.GLObject;
 import com.daniel.sanou.android.opengl.objects.likeglut.*;
 import com.daniel.sanou.android.opengl.objects.others.Atome;
 import com.daniel.sanou.android.opengl.objects.others.Roses;
+import com.daniel.sanou.android.opengl.objects.others.text.GLTextLabel;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -35,7 +37,12 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     private float[] light_position = {mLightX, mLightY, mLightZ, 0.0f};
     private FloatBuffer mat_posiBuf;
 
-    public OpenGLRenderer(){
+
+    private Context context;                           // Context (from Activity)
+    private GLTextLabel glText;
+
+    public OpenGLRenderer(Context context){
+        this.context = context;
         indice = 0;
         initObjectsList();
     }
@@ -54,6 +61,10 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         gl.glEnable(GL10.GL_DEPTH_TEST);
         // Type the depth test
         gl.glDepthFunc(GL10.GL_LEQUAL);
+
+        // Create the GLText
+        glText = new GLTextLabel( gl, context.getAssets() );
+
 
         initBuffers();
     }
@@ -78,6 +89,8 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
 
         /*================================== Objects draw logic ========================================*/
         gl.glTranslatef(objTranslationXAxis, objTranslationYAxis, objTranslationZAxis);
+
+        glText.draw(gl);
         gl.glRotatef(objectRotation, objRotationXAxis, objRotationYAxis, objRotationZAxis);
         //Objects color
         gl.glColor4f(1, 0, 0, 1);
